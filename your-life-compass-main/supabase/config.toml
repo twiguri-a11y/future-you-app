@@ -1,0 +1,7 @@
+project_id = "nqjjyillxssighxbbhrc"
+
+[functions.future-self-chat]
+verify_jwt = false
+
+[functions.generate-narrative]
+verify_jwt = false

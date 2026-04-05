@@ -1,0 +1,1 @@
+ALTER TABLE public.daily_alignment ADD COLUMN IF NOT EXISTS life_area text DEFAULT NULL;
