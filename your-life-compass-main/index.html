@@ -106,14 +106,14 @@
             subtitle: "Choose up to 3 qualities.",
             showAdd: false,
             options: [
-              "Confident & grounded",
-              "Disciplined & consistent",
-              "Calm & in control",
-              "Focused & productive",
-              "Healthy & energized",
-              "Financially free",
-              "Purpose-driven",
-              "Becoming my best self",
+              "Confident & Grounded",
+              "Disciplined & Consistent",
+              "Calm & In Control",
+              "Focused & Productive",
+              "Healthy & Energized",
+              "Financially Free",
+              "Purpose-Driven",
+              "Becoming My Best Self",
             ],
           },
           {
@@ -121,7 +121,7 @@
             title: "What do you want to focus on?",
             subtitle: "Pick up to 3 areas. Add your own if needed.",
             showAdd: true,
-            options: ["happy", "Clarity", "Confidence", "Health", "Relationships", "Career", "Purpose"],
+            options: ["Happy", "Clarity", "Confidence", "Health", "Relationships", "Career", "Purpose"],
           },
         ];
 
@@ -129,6 +129,22 @@
           return String(text || "")
             .trim()
             .replace(/\s+/g, " ");
+        }
+
+        function titleCaseLabel(text) {
+          var s = normalizeWhitespace(text);
+          if (!s) return s;
+          return s.replace(/\b\w/g, function (c) {
+            return c.toUpperCase();
+          });
+        }
+
+        function selectionIndexInsensitive(list, label) {
+          var lower = String(label).toLowerCase();
+          for (var i = 0; i < list.length; i++) {
+            if (String(list[i]).toLowerCase() === lower) return i;
+          }
+          return -1;
         }
 
         function getSelectedForStep(stepKey) {
@@ -159,7 +175,7 @@
 
         function togglePill(stepKey, label) {
           var list = getSelectedForStep(stepKey);
-          var idx = list.indexOf(label);
+          var idx = selectionIndexInsensitive(list, label);
           if (idx >= 0) {
             list.splice(idx, 1);
             setSelectedForStep(stepKey, list);
@@ -174,8 +190,10 @@
           var step = steps[state.stepIndex];
           if (!step.showAdd) return;
 
-          var custom = normalizeWhitespace(addInput.value);
-          if (!custom) return;
+          var customRaw = normalizeWhitespace(addInput.value);
+          if (!customRaw) return;
+
+          var custom = titleCaseLabel(customRaw);
 
           var lowerSet = new Set(
             step.options.map(function (o) {
@@ -216,7 +234,7 @@
             btn.className = "ob-chip";
             btn.textContent = label;
 
-            var selected = selections.indexOf(label) >= 0;
+            var selected = selectionIndexInsensitive(selections, label) >= 0;
             btn.classList.toggle("is-selected", selected);
             btn.setAttribute("aria-pressed", selected ? "true" : "false");
 
@@ -237,6 +255,7 @@
 
         function open() {
           state.stepIndex = 0;
+          state.selectionsByStep = {};
           render();
           setTimeout(function () {
             if (addInput && addWrap.style.display !== "none") addInput.focus();
