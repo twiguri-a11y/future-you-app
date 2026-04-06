@@ -26,6 +26,7 @@ import ContinuePathPage from "./pages/app/ContinuePathPage";
 import DailyCompletionPage from "./pages/app/DailyCompletionPage";
 import VisionBuilderPage from "./pages/VisionBuilderPage";
 import VisionMomentPage from "./pages/VisionMomentPage";
+import VisionQuizPage from "./pages/VisionQuizPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const AnimatedRoutes = () => {
           <Route path="/onboarding-v2" element={<OnboardingV2Page />} />
           <Route path="/vision-builder" element={<VisionBuilderPage />} />
           <Route path="/vision-moment" element={<VisionMomentPage />} />
+          <Route path="/quiz" element={<VisionQuizPage />} />
           <Route
             path="/app"
             element={

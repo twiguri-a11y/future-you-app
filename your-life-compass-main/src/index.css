@@ -187,3 +187,12 @@
 .onboarding-text-secondary {
   color: hsl(210 10% 38%) !important;
 }
+
+/* Landing hero — overrides global heading color; bold uppercase display */
+.landing-hero-page h1,
+.landing-hero-page h2 {
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  color: #ffffff !important;
+}

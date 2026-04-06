@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import App from "./App.jsx";
+import App from "./App.tsx";
 import "./index.css";
 import "./App.css";
 

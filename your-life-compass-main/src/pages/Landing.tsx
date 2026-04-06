@@ -1,70 +1,46 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useAuth } from "@/contexts/AuthContext";
-import { useTheme } from "@/contexts/ThemeContext";
 import MinimalNav from "@/components/MinimalNav";
-import heroImage from "@/assets/hero-landing.jpg";
 
 const Landing = () => {
-  const { user } = useAuth();
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
   return (
-    <div className="relative min-h-screen flex flex-col overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Calm horizon"
-          className="w-full h-full object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background: isDark
-              ? "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.9) 100%)"
-              : "linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.8) 100%)",
-          }}
-        />
-      </div>
-
+    <div className="landing-hero-page relative min-h-screen flex flex-col overflow-hidden bg-[#1A2B3C]">
       {/* Nav */}
       <div className="relative z-20">
         <MinimalNav variant="transparent" />
       </div>
 
-      {/* Content — anchored to bottom */}
-      <div className="relative z-10 flex-1 flex flex-col justify-end items-center text-center px-6 pb-[6vh] max-w-xl mx-auto">
+      {/* Hero — midnight blue panel; headings styled in index.css */}
+      <div className="relative z-10 flex-1 flex flex-col justify-center items-center text-center px-6 py-12 max-w-3xl mx-auto">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-[1.15] tracking-tight"
+          className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.12]"
         >
           Meet who you're becoming
         </motion.h1>
 
-        <motion.p
+        <motion.h2
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="mt-7 text-white/85 text-lg md:text-xl font-light max-w-md leading-relaxed"
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="mt-8 text-white/90 text-base md:text-lg font-normal max-w-md leading-relaxed font-body"
         >
           Your future self already exists. This is where you begin.
-        </motion.p>
+        </motion.h2>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="mt-10"
+          transition={{ duration: 0.6, delay: 0.85 }}
+          className="mt-12 w-full flex justify-center"
         >
           <Link
-            to="/onboarding"
-            className="inline-block bg-white/90 text-black font-display font-medium text-[15px] px-8 py-3 rounded-full hover:bg-white transition-colors shadow-[0_2px_12px_rgba(0,0,0,0.12)]"
+            to="/quiz"
+            className="inline-flex items-center justify-center min-h-[3.5rem] sm:min-h-[3.75rem] px-10 sm:px-14 py-4 rounded-full bg-[#F28C28] hover:bg-[#e07e20] active:bg-[#d97316] text-white font-bold text-lg sm:text-xl tracking-wide shadow-[0_6px_28px_rgba(242,140,40,0.5)] ring-2 ring-white/25 hover:ring-white/40 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F28C28]"
           >
-            Start becoming
+            Enter My Future
           </Link>
         </motion.div>
       </div>
