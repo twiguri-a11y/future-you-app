@@ -13,6 +13,11 @@ interface VisionData {
   lifestyle?: string;
 }
 
+/** Title-case for profile focus labels (e.g. happy → Happy). */
+function formatProfileFocusLabel(value: string) {
+  return value.replace(/\S+/g, (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+}
+
 const VisionPage = () => {
   const { user } = useAuth();
   const [vision, setVision] = useState<VisionData | null>(null);
@@ -109,7 +114,7 @@ const VisionPage = () => {
     <div className="px-6 py-8 max-w-md mx-auto space-y-6 pb-24">
       <motion.div {...anim(0)} className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-2xl font-semibold text-foreground">Vision</h1>
+          <h1 className="font-display text-2xl font-semibold">Vision</h1>
           <p className="text-sm text-muted-foreground font-body mt-1">Your defined future self.</p>
         </div>
         {!editing ? (
@@ -181,7 +186,7 @@ const VisionPage = () => {
                 What Matters Most
               </p>
               <span className="inline-block px-3 py-1.5 rounded-lg bg-secondary/10 text-secondary text-sm font-body font-medium">
-                {vision.priority}
+                {formatProfileFocusLabel(vision.priority)}
               </span>
             </motion.div>
           )}
